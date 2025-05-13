@@ -71,48 +71,48 @@ const JobDetails = () => {
 
                         {/* Job Summary  */}
                         <div className="lg:w-1/4">
-                            <div className="bg-white p-6 rounded-lg shadow-md sticky top-6">
-                                <h3 className="text-xl font-bold text-gray-800 mb-4 pb-2 border-b">Job Summary</h3>
+                            <div className="bg-white text-sm rounded-lg p-2 shadow-md top-6">
+                                <h3 className=" font-bold  bg-indigo-950 p-2 text-white mb-4">Job Summary</h3>
 
                                 <div className="space-y-4">
                                     <div>
-                                        <h4 className="font-medium text-gray-700">Published on:</h4>
-                                        <p className="text-gray-600">27 Dec 2025</p>
+                                        <h4 className="font-medium text-gray-700">Published on:
+                                        <span className="text-gray-600 font-light">27 Dec 2025</span></h4>
                                     </div>
 
                                     <div>
-                                        <h4 className="font-medium text-gray-700">Vacancy:</h4>
-                                        <p className="text-gray-600">01</p>
+                                        <h4 className="font-medium text-gray-700">Vacancy:
+                                        <span className="text-gray-600 font-light">01</span></h4>
                                     </div>
 
                                     <div>
-                                        <h4 className="font-medium text-gray-700">Employment Status:</h4>
-                                        <p className="text-gray-600">Full-time</p>
+                                        <h4 className="font-medium text-gray-700">Employment Status:
+                                        <span className="text-gray-600 font-light">Full-time</span></h4>
                                     </div>
 
                                     <div>
-                                        <h4 className="font-medium text-gray-700">Experience:</h4>
-                                        <p className="text-gray-600">3 to 4 year(s)</p>
+                                        <h4 className="font-medium text-gray-700">Experience:
+                                        <span className="text-gray-600 font-light">3 to 4 year(s)</span></h4>
                                     </div>
 
                                     <div>
-                                        <h4 className="font-medium text-gray-700">Age:</h4>
-                                        <p className="text-gray-600">Age 24 to 36 years</p>
+                                        <h4 className="font-medium text-gray-700">Age:
+                                        <span className="text-gray-600  font-light">Age 24 to 36 years</span></h4>
                                     </div>
 
                                     <div>
-                                        <h4 className="font-medium text-gray-700">Job Location:</h4>
-                                        <p className="text-gray-600">Dhaka</p>
+                                        <h4 className="font-medium text-gray-700">Job Location:
+                                        <span className="text-gray-600 font-light">Dhaka</span></h4>
                                     </div>
 
                                     <div>
-                                        <h4 className="font-medium text-gray-700">Salary:</h4>
-                                        <p className="text-gray-600">Negotiable</p>
+                                        <h4 className="font-medium text-gray-700">Salary:
+                                        <span className="text-gray-600 font-light">Negotiable</span></h4>
                                     </div>
 
                                     <div>
-                                        <h4 className="font-medium text-gray-700">Application Deadline:</h4>
-                                        <p className="text-gray-600">27 Jan 2026</p>
+                                        <h4 className="font-medium text-gray-700">Application Deadline:
+                                        <span className="text-gray-600 font-light">27 Jan 2026</span></h4>
                                     </div>
                                 </div>
                             </div>

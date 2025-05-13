@@ -7,6 +7,8 @@ import {
     FaEnvelope,
     FaTwitter
 } from "react-icons/fa";
+import { FiChevronRight } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -37,28 +39,30 @@ const Footer = () => {
                     </div>
 
                     {/* Quick Links - takes full width on mobile, half on medium, 1/3 on large */}
-                    <div className="w-full md:w-[calc(50%-16px)] lg:w-[20%] space-y-4">
-                        <h3 className="text-xl font-semibold">Quick Links</h3>
-                        <ul className="space-y-2">
+                    <div className="w-full md:w-[calc(50%-16px)] lg:w-[20%] space-y-6">
+                        <h3 className="text-xl font-semibold text-white mb-4">Quick Links</h3>
+                        <ul className="space-y-3">
                             {[
-                                "Service & Support",
-                                "FAQs",
-                                "Manufacturers",
-                                "CSR",
-                                "Career",
-                                "Location Map"
+                                { name: "Service & Support" },
+                                { name: "FAQs" },
+                                { name: "Manufacturers" },
+                                { name: "CSR" },
+                                { name: "Career", path: "/career" },
+                                { name: "Location Map" }
                             ].map((link, idx) => (
-                                <li key={idx}>
-                                    <a
-                                        href={link === "Career" ? "/career" : "#"}
-                                        className="hover:text-indigo-300"
+                                <li
+                                    key={idx}
+
+                                >
+                                    <Link
+                                        to={link.path || "#"}
+                                        className="text-gray-300 hover:text-indigo-300 transition-colors duration-200 flex items-center"
                                     >
-                                        {link}
-                                    </a>
+                                        {link.name}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
-
                     </div>
 
                     {/* Contact - takes full width on mobile and medium, 1/3 on large */}

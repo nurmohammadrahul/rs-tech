@@ -1,1 +1,1 @@
-# live demo :  https://rs-tech.netlify.app/
+# live demo :  (https://rs-tech-xi.vercel.app/)

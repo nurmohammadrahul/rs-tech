@@ -242,7 +242,7 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="lg:hidden bg-indigo-950 text-sm shadow-md px-4 pb-4"
                 >
-                    <ul className="space-y-2">
+                    <ul className="space-y-1">
                         {navItems.map((item) => (
                             <motion.li
                                 key={`mobile-${item.id}`}
@@ -304,7 +304,7 @@ const Navbar = () => {
                                                                 <motion.button
                                                                     whileTap={{ scale: 0.95 }}
                                                                     onClick={() => setOpenSubDropdown(openSubDropdown === subItem.id ? null : subItem.id)}
-                                                                    className="flex w-full py-2 text-white hover:text-indigo-300 items-center justify-between"
+                                                                    className="flex w-full py-2 text-white text-xs hover:text-indigo-300 items-center justify-between"
                                                                 >
                                                                     <span>{subItem.label}</span>
                                                                     <FiChevronDown className="ml-2" />
@@ -321,7 +321,7 @@ const Navbar = () => {
                                                                                 <motion.div whileTap={{ scale: 0.95 }}>
                                                                                     <Link
                                                                                         to={nestedItem.path}
-                                                                                        className="block py-2 text-white hover:text-indigo-300"
+                                                                                        className="block py-2 text-white text-xs hover:text-indigo-300"
                                                                                         onClick={(e) => {
                                                                                             e.preventDefault();
                                                                                             handleLinkClick(nestedItem.path);

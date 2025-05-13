@@ -1,9 +1,10 @@
-import Home from "./Home";
-
+import CommonHero from "../Shared/CommonHero";
+import AllProject from "../Shared/Projects/AllProject";
 const Products = () => {
     return (
         <div>
-            <Home />
+            <CommonHero title="completed project" />
+            <AllProject />
         </div>
     );
 };

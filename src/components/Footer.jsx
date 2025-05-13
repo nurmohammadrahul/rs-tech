@@ -49,12 +49,16 @@ const Footer = () => {
                                 "Location Map"
                             ].map((link, idx) => (
                                 <li key={idx}>
-                                    <a href="#" className="hover:text-indigo-300">
+                                    <a
+                                        href={link === "Career" ? "/career" : "#"}
+                                        className="hover:text-indigo-300"
+                                    >
                                         {link}
                                     </a>
                                 </li>
                             ))}
                         </ul>
+
                     </div>
 
                     {/* Contact - takes full width on mobile and medium, 1/3 on large */}
@@ -62,15 +66,21 @@ const Footer = () => {
                         <h3 className="text-xl font-semibold">Contact</h3>
                         <div className="space-y-4">
                             <div className="flex items-start gap-3 group">
-                                <FaMapMarkerAlt className="mt-1 group-hover:text-indigo-300 transition-colors" />
+                                <div className=" border bg-[#FFFFFF1A] text-2xl p-3 rounded-full flex items-center justify-center hover:bg-indigo-950 hover:border-white transition-colors">
+                                    <FaMapMarkerAlt />
+                                </div>
                                 <p>House# 9, Road# 2C, Block# J, Baridhara, Dhaka-1212</p>
                             </div>
                             <div className="flex items-start gap-3 group">
-                                <FaPhoneAlt className="mt-1 group-hover:text-indigo-300 transition-colors" />
+                                <div className=" border bg-[#FFFFFF1A] text-2xl p-3 rounded-full flex items-center justify-center hover:bg-indigo-950 hover:border-white transition-colors">
+                                    <FaPhoneAlt />
+                                </div>
                                 <a href="tel:01916017508" className="hover:text-indigo-300">(+088) 01916017508</a>
                             </div>
                             <div className="flex items-start gap-3 group">
-                                <FaEnvelope className="mt-1 group-hover:text-indigo-300 transition-colors" />
+                                <div className=" border bg-[#FFFFFF1A] text-2xl p-3 rounded-full flex items-center justify-center hover:bg-indigo-950 hover:border-white transition-colors">
+                                    <FaEnvelope />
+                                </div>
                                 <a href="mailto:rejveee@gmail.com" className="hover:text-indigo-300 lowercase">rejveee@gmail.com</a>
                             </div>
                         </div>

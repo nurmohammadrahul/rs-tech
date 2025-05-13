@@ -13,6 +13,12 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import NewsSingle from './Shared/News/NewsSingle';
 import SingleAlbum from './Shared/PhotoAlbum/SingleAlbum';
+import Empty from './pages/Empty';
+import SingleSolution from './Shared/SingleSolution';
+import Career from './pages/Career';
+import JobDetails from './Shared/CareerJob/JobDetails';
+import Apply from './Shared/CareerJob/Apply';
+import ProjectDetails from './Shared/Projects/ProjectDetails';
 
 function App() {
   return (
@@ -33,7 +39,14 @@ function App() {
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/clients" element={<Clients />} />
             <Route path="/solution" element={<Solutions />} />
+            <Route path="/singlesolution" element={<SingleSolution />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/empty" element={<Empty />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/jobdetails" element={<JobDetails />} />
+            <Route path="/apply" element={<Apply />} />
+            <Route path="/projectdetails" element={<ProjectDetails />} />
+
           </Routes>
         </main>
 

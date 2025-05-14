@@ -6,7 +6,7 @@ import iconGoal from "../../assets/rs-tech-asset/icon-goal.svg";
 
 const MissionVision = () => {
     return (
-        <section className="bg-indigo-950 text-white">
+        <section className="bg-indigo-900 text-white">
             <div className="flex flex-col lg:flex-row">
                 <div className="w-full lg:w-1/2 relative">
                     <div className="relative group w-full h-full overflow-hidden">

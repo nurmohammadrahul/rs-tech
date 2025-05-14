@@ -30,7 +30,7 @@ const Apply = () => {
     return (
         <div>
             <CommonHero title='Career' />
-            <section className="py-16 bg-gray-50">
+            <section className="py-10 lg:py-16 bg-gray-50">
                 <div className="container mx-auto px-4">
                     <div className="flex justify-center">
                         <div className="w-full max-w-2xl">

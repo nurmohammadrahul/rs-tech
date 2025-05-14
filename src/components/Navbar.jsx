@@ -13,14 +13,21 @@ const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Clear timeouts on unmount
     useEffect(() => {
         return () => {
             if (hoverTimeout) clearTimeout(hoverTimeout);
         };
     }, [hoverTimeout]);
 
-    const toggleMenu = () => setIsOpen(!isOpen);
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+
+        // Reset dropdown and sub-dropdown states when the menu is toggled (closed)
+        if (isOpen) {
+            setOpenDropdown(null);
+            setOpenSubDropdown(null);
+        }
+    };
 
     const handleLinkClick = (path) => {
         setOpenDropdown(null);
@@ -35,10 +42,10 @@ const Navbar = () => {
         }
     };
 
-    const handleDropdownHover = (index) => {
+    const handleDropdownHover = (id) => {
         clearTimeout(hoverTimeout);
         setHoverTimeout(setTimeout(() => {
-            setOpenDropdown(index);
+            setOpenDropdown(id);
         }, 200));
     };
 
@@ -67,10 +74,20 @@ const Navbar = () => {
                 { id: "management", path: "/management", label: "Management Info" }
             ]
         },
+        {
+            id: "project",
+            label: "Projects",
+            subItems: [
+                { id: "completedproject", path: "/products", label: "Completed Projects" },
+                { id: "upcomingproject", path: "/products", label: "Upcoming Projects" },
+                { id: "runningproject", path: "/products", label: "Running Projects " },
+            ]
+        },
         { id: "products", path: "/products", label: "Products" },
         {
             id: "solutions",
             label: "Solutions",
+            path: "/solution",
             subItems: [
                 {
                     id: "network-solution",
@@ -111,119 +128,94 @@ const Navbar = () => {
     ];
 
     return (
-        <header className="bg-white rounded-4xl font-medium text-black w-full lg:w-[85%] mt-4 lg:mt-10 mx-auto lg:mx-24 z-50  lg:absolute left-0 right-0 lg:left-auto lg:right-auto">
-            <div className="container mx-auto px-4 flex justify-between items-center py-4">
-                <Link to="/" className="block" onClick={() => handleLinkClick('/')}>
-                    <img src={logo} alt="Logo" className="h-12" />
-                </Link>
-
-                {/* Desktop Menu */}
-                <nav className="hidden lg:flex gap-8 p-4 items-center">
+        <header className="bg-white rounded-4xl font-medium text-black w-full md:max-w-[85%] mt-2 lg:mt-10 mx-auto lg:mx-24 z-50 lg:absolute left-0 right-0 lg:left-auto lg:right-auto">
+            <div className="container mx-auto p-2  lg:p-4 flex justify-between lg:justify-even lg:gap-10 items-center">
+                <Link to="/" className="block" onClick={() => handleLinkClick('/')}> <img src={logo} alt="Logo" className="h-10 sm:w-[120px] lg:w-[200px] lg:h-16" /> </Link>
+                <nav className="hidden lg:flex gap-8 py-4 px-8 items-center">
                     {navItems.map((item, index) => (
                         <div
                             key={item.id}
                             className="relative"
-                            onMouseEnter={() => handleDropdownHover(index)}
+                            onMouseEnter={() => handleDropdownHover(item.id)}
                             onMouseLeave={handleDropdownLeave}
                         >
-                            {item.path ? (
-                                <motion.div whileTap={{ scale: 0.95 }}>
-                                    <Link
-                                        to={item.path}
-                                        className="hover:text-indigo-700"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handleLinkClick(item.path);
-                                        }}
-                                    >
-                                        {item.label}
-                                    </Link>
-                                </motion.div>
-                            ) : (
-                                <>
-                                    <motion.div
-                                        whileHover={{ y: 0 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="flex items-center gap-1 hover:text-indigo-700 cursor-pointer"
-                                    >
-                                        {item.label}
-                                        {openDropdown === index ? <FiChevronUp /> : <FiChevronDown />}
-                                    </motion.div>
-
-                                    {openDropdown === index && item.subItems && (
-                                        <motion.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            transition={{ duration: 0.15 }}
-                                            className="absolute top-full left-0 bg-indigo-950 shadow-lg rounded-md mt-2 min-w-[250px] py-2 z-10"
+                            <motion.div whileTap={{ scale: 0.95 }}>
+                                <div
+                                    className="hover:text-indigo-900 cursor-pointer flex items-center gap-1"
+                                    onClick={() => item.path && handleLinkClick(item.path)}
+                                >
+                                    {item.label}
+                                    {item.subItems && (openDropdown === item.id ? <FiChevronUp /> : <FiChevronDown />)}
+                                </div>
+                            </motion.div>
+                            {openDropdown === item.id && item.subItems && (
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.15 }}
+                                    className="absolute top-full left-0 bg-indigo-950 shadow-lg rounded-md mt-2 min-w-[250px] py-2 z-10"
+                                >
+                                    {item.subItems.map((subItem, subIndex) => (
+                                        <div
+                                            key={subItem.id}
+                                            className="relative px-4"
+                                            onMouseEnter={() => handleSubDropdownHover(`${item.id}-${subIndex}`)}
+                                            onMouseLeave={handleDropdownLeave}
                                         >
-                                            {item.subItems.map((subItem, subIndex) => (
-                                                <div
-                                                    key={subItem.id}
-                                                    className="relative px-4"
-                                                    onMouseEnter={() => handleSubDropdownHover(`${index}-${subIndex}`)}
-                                                    onMouseLeave={handleDropdownLeave}
-                                                >
-                                                    {subItem.path ? (
-                                                        <motion.div whileTap={{ scale: 0.95 }}>
-                                                            <Link
-                                                                to={subItem.path}
-                                                                className="block py-2 text-sm text-white hover:text-orange-300"
-                                                                onClick={(e) => {
-                                                                    e.preventDefault();
-                                                                    handleLinkClick(subItem.path);
-                                                                }}
-                                                            >
-                                                                {subItem.label}
-                                                            </Link>
-                                                        </motion.div>
-                                                    ) : (
-                                                        <>
-                                                            <motion.div
-                                                                whileHover={{ y: 0 }}
-                                                                whileTap={{ scale: 0.95 }}
-                                                                className="flex justify-between items-center w-full py-2 text-sm text-white hover:text-orange-300 cursor-pointer"
-                                                            >
-                                                                <span>{subItem.label}</span>
-                                                                <FiChevronDown className="ml-2" />
-                                                            </motion.div>
-
-                                                            {openSubDropdown === `${index}-${subIndex}` && subItem.subItems && (
-                                                                <motion.div
-                                                                    initial={{ opacity: 0 }}
-                                                                    animate={{ opacity: 1 }}
-                                                                    transition={{ duration: 0.15 }}
-                                                                    className="absolute left-full top-0 ml-1 bg-indigo-950 shadow-lg rounded-md min-w-[200px] z-10"
-                                                                >
-                                                                    {subItem.subItems.map((nestedItem) => (
-                                                                        <motion.div key={nestedItem.id} whileTap={{ scale: 0.95 }}>
-                                                                            <Link
-                                                                                to={nestedItem.path}
-                                                                                className="block px-4 py-2 text-white text-sm hover:text-orange-300"
-                                                                                onClick={(e) => {
-                                                                                    e.preventDefault();
-                                                                                    handleLinkClick(nestedItem.path);
-                                                                                }}
-                                                                            >
-                                                                                {nestedItem.label}
-                                                                            </Link>
-                                                                        </motion.div>
-                                                                    ))}
+                                            {subItem.path ? (
+                                                <motion.div whileTap={{ scale: 0.95 }}>
+                                                    <Link
+                                                        to={subItem.path}
+                                                        className="block py-2 text-sm text-white hover:text-orange-300"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            handleLinkClick(subItem.path);
+                                                        }}
+                                                    >
+                                                        {subItem.label}
+                                                    </Link>
+                                                </motion.div>
+                                            ) : (
+                                                <>
+                                                    <motion.div
+                                                        whileTap={{ scale: 0.95 }}
+                                                        className="flex justify-between items-center w-full py-2 text-sm text-white hover:text-orange-300 cursor-pointer"
+                                                    >
+                                                        <span>{subItem.label}</span>
+                                                        <FiChevronDown className="ml-2" />
+                                                    </motion.div>
+                                                    {openSubDropdown === `${item.id}-${subIndex}` && subItem.subItems && (
+                                                        <motion.div
+                                                            initial={{ opacity: 0 }}
+                                                            animate={{ opacity: 1 }}
+                                                            transition={{ duration: 0.15 }}
+                                                            className="absolute left-full top-0 ml-1 bg-indigo-950 shadow-lg rounded-md min-w-[200px] z-10"
+                                                        >
+                                                            {subItem.subItems.map((nestedItem) => (
+                                                                <motion.div key={nestedItem.id} whileTap={{ scale: 0.95 }}>
+                                                                    <Link
+                                                                        to={nestedItem.path}
+                                                                        className="block px-4 py-2 text-white text-sm hover:text-orange-300"
+                                                                        onClick={(e) => {
+                                                                            e.preventDefault();
+                                                                            handleLinkClick(nestedItem.path);
+                                                                        }}
+                                                                    >
+                                                                        {nestedItem.label}
+                                                                    </Link>
                                                                 </motion.div>
-                                                            )}
-                                                        </>
+                                                            ))}
+                                                        </motion.div>
                                                     )}
-                                                </div>
-                                            ))}
-                                        </motion.div>
-                                    )}
-                                </>
+                                                </>
+                                            )}
+                                        </div>
+                                    ))}
+                                </motion.div>
                             )}
                         </div>
                     ))}
                 </nav>
-
-                {/* Mobile Menu Toggle */}
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}

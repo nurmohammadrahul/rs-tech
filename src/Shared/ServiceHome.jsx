@@ -5,8 +5,10 @@ import serviceImage3 from "../assets/rs-tech-asset/service-image-3.jpg";
 import serviceImage4 from "../assets/rs-tech-asset/service-image-4.jpg";
 import serviceImage5 from "../assets/rs-tech-asset/service-image-5.jpg";
 import serviceImage6 from "../assets/rs-tech-asset/service-image-6.jpg";
-
+import imgw from "../assets/rs-tech-asset/icon-sub-heading.svg";
+import { useLocation } from 'react-router-dom';
 const ServiceHome = ({ title = "", subtitle = "" }) => {
+
     const fadeInUp = {
         hidden: { opacity: 0, y: 20 },
         visible: {
@@ -15,7 +17,8 @@ const ServiceHome = ({ title = "", subtitle = "" }) => {
             transition: { duration: 0.6, ease: "easeOut" }
         }
     };
-
+    const location = useLocation();
+    const isHome = location.pathname === "/";
     const services = [
         {
             id: 1,
@@ -62,20 +65,26 @@ const ServiceHome = ({ title = "", subtitle = "" }) => {
     ];
 
     return (
-        <section className="py-4 md:px-24 lg:px-24 bg-white">
+        <section className="py-2 md:px-24 lg:px-24 bg-white">
             <div className="container mx-auto px-4">
                 {/* Section Header */}
                 <div className="text-center mb-16">
-                    <motion.h3
+                    <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={fadeInUp}
                         transition={{ duration: 0.6 }}
-                        className="text-lg font-medium text-indigo-600 dark:text-indigo-400 mb-2"
+                        className="flex items-center justify-center gap-2 mb-2"
                     >
-                        {title}
-                    </motion.h3>
+                        {isHome && (
+                            <img src={imgw} alt="icon" className="w-5 h-5" />
+                        )}
+                        <h3 className="text-lg font-medium text-indigo-950 dark:text-indigo-400">
+                            {title}
+                        </h3>
+                    </motion.div>
+
                     <motion.h2
                         initial="hidden"
                         whileInView="visible"

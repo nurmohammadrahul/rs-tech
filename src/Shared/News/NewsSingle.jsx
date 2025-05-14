@@ -28,7 +28,8 @@ const NewsSingle = () => {
     return (
         <div>
             <CommonHero title="news" />
-            <div className="min-w-screen mx-auto py-16 px-6 lg:px-40">
+            <div className="mx-auto py-10
+             px-6 lg:px-24">
                 <div className="relative group w-full h-80 overflow-hidden rounded-xl mb-6">
                     <img
                         src={post.image}

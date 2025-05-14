@@ -4,7 +4,10 @@ const Clients = () => {
     return (
         <div>
             <CommonHero title="Clients" />
-            <BrandSection title="" />
+            <div className="-my-12">
+                <BrandSection title="" />
+            </div>
+
         </div>
     );
 };

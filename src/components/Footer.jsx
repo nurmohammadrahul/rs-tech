@@ -66,7 +66,7 @@ const Footer = () => {
                     </div>
 
                     {/* Contact - takes full width on mobile and medium, 1/3 on large */}
-                    <div className="w-full md:w-full lg:w-[20%] space-y-4">
+                    <div className="w-full md:w-full lg:w-[30%] space-y-4">
                         <h3 className="text-xl font-semibold">Contact</h3>
                         <div className="space-y-4">
                             <div className="flex items-start gap-3 group">
@@ -97,7 +97,7 @@ const Footer = () => {
                 <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-indigo-100">
                     <p>Copyright © 2025 RS Technologies Ltd. All Rights Reserved.</p>
                     <p className="mt-2 md:mt-0">
-                        <a href="https://www.esoft.com.bd/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-300">
+                        <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-300">
                             Web Design Company: <span className="font-cursive">e-<span className="text-red-400">S</span>oft</span>
                         </a>
                     </p>

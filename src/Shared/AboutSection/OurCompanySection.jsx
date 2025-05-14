@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import aboutImage from "../../assets/rs-tech-asset/about-2.png";
+import im from "../../assets/rs-tech-asset/icon-sub-heading.svg"
 
 const OurCompanySection = () => {
     return (
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-10 md:py-16 bg-white">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col lg:flex-row items-center gap-12">
                     {/* Image Section with Circular Hover Effect */}
@@ -33,15 +34,16 @@ const OurCompanySection = () => {
                         className="w-full lg:w-7/12"
                     >
                         <div className="space-y-6">
-                            <motion.h3
+                            <motion.div
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.1 }}
-                                className="text-lg font-medium text-indigo-600"
+                                className="flex items-center gap-2"
                             >
-                                Our Company
-                            </motion.h3>
+                                <img src={im} alt="Icon" className="w-6 h-6" />
+                                <h3 className="text-lg font-medium text-indigo-950">Our Company</h3>
+                            </motion.div>
 
                             <motion.h2
                                 initial={{ opacity: 0, y: 20 }}

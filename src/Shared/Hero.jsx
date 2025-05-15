@@ -22,27 +22,27 @@ const Hero = () => {
                 pagination={{ clickable: true }}
                 loop={true}
                 modules={[EffectFade, Navigation, Pagination]}
-                className="h-[30vh] lg:min-h-screen w-full"
+                className="h-[40vh] lg:min-h-screen w-full"
             >
                 <SwiperSlide>
                     <img
                         src={slider1}
                         alt="Slider 1"
-                        className="w-full lg:h-screen sm:h-[30vh] object-cover"
+                        className="w-full lg:h-screen sm:h-[40vh] object-cover"
                     />
                 </SwiperSlide>
                 <SwiperSlide>
                     <img
                         src={slider2}
                         alt="Slider 2"
-                        className="w-full lg:h-screen sm:h-[30vh] object-cover"
+                        className="w-full lg:h-screen sm:h-[40vh] object-cover"
                     />
                 </SwiperSlide>
                 <SwiperSlide>
                     <img
                         src={slider3}
                         alt="Slider 3"
-                        className="w-full lg:h-screen sm:h-[30vh] object-cover"
+                        className="w-full lg:h-screen sm:h-[40vh] object-cover"
                     />
                 </SwiperSlide>
                 

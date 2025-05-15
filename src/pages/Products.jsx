@@ -3,7 +3,7 @@ import AllProject from "../Shared/Projects/AllProject";
 const Products = () => {
     return (
         <div>
-            <CommonHero title="completed project" />
+            <CommonHero title="completed projects" />
             <AllProject />
         </div>
     );

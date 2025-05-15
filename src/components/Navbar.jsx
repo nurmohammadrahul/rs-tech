@@ -21,8 +21,6 @@ const Navbar = () => {
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
-
-        // Reset dropdown and sub-dropdown states when the menu is toggled (closed)
         if (isOpen) {
             setOpenDropdown(null);
             setOpenSubDropdown(null);
@@ -33,7 +31,6 @@ const Navbar = () => {
         setOpenDropdown(null);
         setOpenSubDropdown(null);
         setIsOpen(false);
-
         if (location.pathname === path) {
             navigate('/empty');
             setTimeout(() => navigate(path), 10);
@@ -64,6 +61,15 @@ const Navbar = () => {
         }, 100));
     };
 
+    const toggleMobileDropdown = (id) => {
+        setOpenDropdown(openDropdown === id ? null : id);
+        setOpenSubDropdown(null); // Reset sub-dropdown when opening a new dropdown
+    };
+
+    const toggleMobileSubDropdown = (id) => {
+        setOpenSubDropdown(openSubDropdown === id ? null : id);
+    };
+
     const navItems = [
         { id: "home", path: "/", label: "Home" },
         {
@@ -87,7 +93,7 @@ const Navbar = () => {
         {
             id: "solutions",
             label: "Solutions",
-            path: "/solution",
+            
             subItems: [
                 {
                     id: "network-solution",
@@ -128,9 +134,11 @@ const Navbar = () => {
     ];
 
     return (
-        <header className="bg-white rounded-4xl font-medium text-black w-full md:max-w-[85%] mt-2 lg:mt-10 mx-auto lg:mx-24 z-50 lg:absolute left-0 right-0 lg:left-auto lg:right-auto">
-            <div className="container mx-auto p-2  lg:p-4 flex justify-between lg:justify-even lg:gap-10 items-center">
-                <Link to="/" className="block" onClick={() => handleLinkClick('/')}> <img src={logo} alt="Logo" className="h-10 sm:w-[120px] lg:w-[200px] lg:h-16" /> </Link>
+        <header className="bg-white lg:rounded-4xl font-medium text-black w-full md:max-w-[85%] lg:mt-10 mx-auto lg:mx-24 z-50 absolute left-0 right-0 lg:left-auto lg:right-auto">
+            <div className="container mx-auto p-2 lg:p-4 flex justify-between lg:justify-even lg:gap-10 items-center">
+                <Link to="/" className="block" onClick={() => handleLinkClick('/')}> 
+                    <img src={logo} alt="Logo" className="h-12 pl-4 sm:w-[120px] lg:w-[200px] lg:h-16" /> 
+                </Link>
                 <nav className="hidden lg:flex gap-8 py-4 px-8 items-center">
                     {navItems.map((item, index) => (
                         <div
@@ -232,9 +240,9 @@ const Navbar = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 0 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="lg:hidden bg-indigo-950 text-sm shadow-md px-4 pb-4"
+                    className="lg:hidden bg-gradient-to-r from-indigo-900 to-indigo-950 text-sm px-5"
                 >
-                    <ul className="space-y-1">
+                    <ul className="space-y-0.5">
                         {navItems.map((item) => (
                             <motion.li
                                 key={`mobile-${item.id}`}
@@ -246,7 +254,7 @@ const Navbar = () => {
                                     <motion.div whileTap={{ scale: 0.95 }}>
                                         <Link
                                             to={item.path}
-                                            className="block py-2 text-white text-xs hover:text-indigo-300"
+                                            className="block py-2 text-white text-xs hover:text-indigo-700"
                                             onClick={(e) => {
                                                 e.preventDefault();
                                                 handleLinkClick(item.path);
@@ -259,8 +267,8 @@ const Navbar = () => {
                                     <>
                                         <motion.button
                                             whileTap={{ scale: 0.95 }}
-                                            onClick={() => setOpenDropdown(openDropdown === item.id ? null : item.id)}
-                                            className="flex w-full py-2 text-white text-xs hover:text-indigo-300 items-center justify-between"
+                                            onClick={() => toggleMobileDropdown(item.id)}
+                                            className="flex w-full py-2 text-white text-xs hover:text-indigo-700 items-center justify-between"
                                         >
                                             <span>{item.label}</span>
                                             {openDropdown === item.id ? (
@@ -271,7 +279,7 @@ const Navbar = () => {
                                         </motion.button>
 
                                         {openDropdown === item.id && item.subItems && (
-                                            <ul className="py-2 space-y-2 pl-4">
+                                            <ul className="py-2 space-y-0.5 pl-4">
                                                 {item.subItems.map((subItem) => (
                                                     <motion.li
                                                         key={`mobile-${subItem.id}`}
@@ -282,7 +290,7 @@ const Navbar = () => {
                                                             <motion.div whileTap={{ scale: 0.95 }}>
                                                                 <Link
                                                                     to={subItem.path}
-                                                                    className="block py-2 text-white text-xs hover:text-indigo-300"
+                                                                    className="block py-2 text-white text-xs hover:text-indigo-700"
                                                                     onClick={(e) => {
                                                                         e.preventDefault();
                                                                         handleLinkClick(subItem.path);
@@ -295,15 +303,19 @@ const Navbar = () => {
                                                             <>
                                                                 <motion.button
                                                                     whileTap={{ scale: 0.95 }}
-                                                                    onClick={() => setOpenSubDropdown(openSubDropdown === subItem.id ? null : subItem.id)}
-                                                                    className="flex w-full py-2 text-white text-xs hover:text-indigo-300 items-center justify-between"
+                                                                    onClick={() => toggleMobileSubDropdown(subItem.id)}
+                                                                    className="flex w-full py-2 text-white text-xs hover:text-indigo-700 items-center justify-between"
                                                                 >
                                                                     <span>{subItem.label}</span>
-                                                                    <FiChevronDown className="ml-2" />
+                                                                    {openSubDropdown === subItem.id ? (
+                                                                        <FiChevronUp className="ml-2" />
+                                                                    ) : (
+                                                                        <FiChevronDown className="ml-2" />
+                                                                    )}
                                                                 </motion.button>
 
                                                                 {openSubDropdown === subItem.id && subItem.subItems && (
-                                                                    <ul className="pl-4 space-y-2 mt-2">
+                                                                    <ul className="pl-4 space-y-0.5 mt-2">
                                                                         {subItem.subItems.map((nestedItem) => (
                                                                             <motion.li
                                                                                 key={`mobile-${nestedItem.id}`}
@@ -313,7 +325,7 @@ const Navbar = () => {
                                                                                 <motion.div whileTap={{ scale: 0.95 }}>
                                                                                     <Link
                                                                                         to={nestedItem.path}
-                                                                                        className="block py-2 text-white text-xs hover:text-indigo-300"
+                                                                                        className="block py-2 text-white text-xs hover:text-indigo-700"
                                                                                         onClick={(e) => {
                                                                                             e.preventDefault();
                                                                                             handleLinkClick(nestedItem.path);
@@ -343,4 +355,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Navbar; 

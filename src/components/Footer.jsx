@@ -56,6 +56,7 @@ const Footer = () => {
                                 >
                                     <Link
                                         to={link.path || "#"}
+                                        onClick={() => window.scrollTo(0, 0)}
                                         className="text-gray-300 hover:text-indigo-300 transition-colors duration-200 flex items-center"
                                     >
                                         {link.name}

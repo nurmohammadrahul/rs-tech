@@ -58,7 +58,11 @@ const JobDetails = () => {
                                 </p>
 
                                 <button
-                                    onClick={() => navigate("/apply")}
+                                    onClick={() => {
+                                        navigate("/apply");
+                                        window.scrollTo(0, 0);
+                                    }}
+
                                     className="flex items-center gap-2 px-6 py-2 bg-indigo-950 text-lg text-white font-semibold rounded-4xl hover:bg-indigo-900 transition-colors md:self-center"
                                 >
                                     Apply Now
@@ -77,42 +81,42 @@ const JobDetails = () => {
                                 <div className="space-y-4">
                                     <div>
                                         <h4 className="font-medium text-gray-700">Published on:
-                                        <span className="text-gray-600 font-light">27 Dec 2025</span></h4>
+                                            <span className="text-gray-600 font-light">27 Dec 2025</span></h4>
                                     </div>
 
                                     <div>
                                         <h4 className="font-medium text-gray-700">Vacancy:
-                                        <span className="text-gray-600 font-light">01</span></h4>
+                                            <span className="text-gray-600 font-light">01</span></h4>
                                     </div>
 
                                     <div>
                                         <h4 className="font-medium text-gray-700">Employment Status:
-                                        <span className="text-gray-600 font-light">Full-time</span></h4>
+                                            <span className="text-gray-600 font-light">Full-time</span></h4>
                                     </div>
 
                                     <div>
                                         <h4 className="font-medium text-gray-700">Experience:
-                                        <span className="text-gray-600 font-light">3 to 4 year(s)</span></h4>
+                                            <span className="text-gray-600 font-light">3 to 4 year(s)</span></h4>
                                     </div>
 
                                     <div>
                                         <h4 className="font-medium text-gray-700">Age:
-                                        <span className="text-gray-600  font-light">Age 24 to 36 years</span></h4>
+                                            <span className="text-gray-600  font-light">Age 24 to 36 years</span></h4>
                                     </div>
 
                                     <div>
                                         <h4 className="font-medium text-gray-700">Job Location:
-                                        <span className="text-gray-600 font-light">Dhaka</span></h4>
+                                            <span className="text-gray-600 font-light">Dhaka</span></h4>
                                     </div>
 
                                     <div>
                                         <h4 className="font-medium text-gray-700">Salary:
-                                        <span className="text-gray-600 font-light">Negotiable</span></h4>
+                                            <span className="text-gray-600 font-light">Negotiable</span></h4>
                                     </div>
 
                                     <div>
                                         <h4 className="font-medium text-gray-700">Application Deadline:
-                                        <span className="text-gray-600 font-light">27 Jan 2026</span></h4>
+                                            <span className="text-gray-600 font-light">27 Jan 2026</span></h4>
                                     </div>
                                 </div>
                             </div>

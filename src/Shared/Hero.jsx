@@ -55,8 +55,8 @@ const Hero = () => {
             <style jsx global>{`
                 .swiper-button-prev,
                 .swiper-button-next {
-                    --swiper-navigation-size: 32px; /* Larger default size */
-                    --swiper-navigation-color: #000; /* Black arrows */
+                    --swiper-navigation-size: 45px; /* Larger default size */
+                    --swiper-navigation-color: #FFF; /* Black arrows */
                     background: transparent !important; /* No background */
                     width: var(--swiper-navigation-button-width, 48px);
                     height: var(--swiper-navigation-button-height, 48px);
